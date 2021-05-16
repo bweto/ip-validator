@@ -1,0 +1,66 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "jacoco"
+}
+
+group = 'com.mercadolibre.ip.validator'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '11'
+targetCompatibility = 11
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+bootJar{
+	archiveName 'ipValidator.jar'
+	launchScript()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	//SWAGGER
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	testRuntimeOnly 'com.h2database:h2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' 
+	}
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacoco{
+	toolVersion = "0.8.6"
+	reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+	reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination layout.buildDirectory.dir('jacocoHtml').get().asFile
+    }
+    afterEvaluate {
+    	classDirectories.from = files(classDirectories.files.collect {
+    		fileTree(dir: it, exclude:[
+    			'com/mercadolibre/ip/validator/configuration/*'
+    		])
+    	})
+    }
+	 dependsOn test
+}
+
+check.dependsOn test

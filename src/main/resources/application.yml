@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ip-validator
+  profiles:
+    active: dev
+  jmx:
+    enabled: false
+  session:
+    store-type: none
+  jackson:
+    time-zone: America/Bogota
+
+server:
+    servlet:
+        context-path: /ip-validator/api

@@ -1,0 +1,5 @@
+FROM openjdk:11
+COPY . /build/libs/ipValidator.jar
+COPY start.sh .
+RUN javac Hello.java
+ENTRYPOINT ["sh", "start.sh"]

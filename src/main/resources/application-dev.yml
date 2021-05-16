@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+connections-with-third-parties:
+  ip2country:
+   url: https://api.ip2country.info/ip?
+  restcountries:
+    url: https://restcountries.eu/rest/v2/alpha/
+  fixerio:
+    url: http://data.fixer.io/api/latest?access_key=
+    key: 0cb10c7349dd577d1a592c24daa4ffea
+    options: "&format=1"
