@@ -13,10 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author robet
- *
- */
 @Entity
 @Table(name = "black_list")
 public class IPBlackListEntity implements Serializable {

@@ -8,6 +8,4 @@ public interface BlackListRepository extends CrudRepository<IPBlackListEntity, L
 	
 	public boolean existsByIpNumber(String ipNumber);
 	
-	public IPBlackListEntity findByIpNumber(String ipNumber);
-	
 }
