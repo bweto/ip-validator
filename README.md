@@ -8,6 +8,7 @@
 4. [Requerimientos](#id4)
 5. [Obtner el código fuente](#id5)
 6. [Docker](#id6)
+7. [Casos de prueba](#id7)
 
 >## **Ejercicio**
 <div id='id1' />
@@ -59,7 +60,7 @@ Si se agrega de forma exitosa se responde con el estatus **HTTP 201 created**. e
 
 
 >## **Herramientas**
-<div id='id2' />
+<div id='id3' />
 ---
 Para este ejercicio se utilizaron las siguientes Herramientas:
 
@@ -72,7 +73,7 @@ Para este ejercicio se utilizaron las siguientes Herramientas:
 - Gradle
 
 >## **Requerimientos**
-<div id='id3' />
+<div id='id4' />
 ---
 - Java 11
 - Gradle >= 5.6
@@ -80,7 +81,7 @@ Para este ejercicio se utilizaron las siguientes Herramientas:
 
 
 >## **Obtner el código fuente**
-<div id='id4' />
+<div id='id5' />
 ---
 El código fuente se encuentra en GitHub, para obtenerlo se debe ejecutar el siguiete comando en la terminal o ir al sitio directamente. [repositorio](https://github.com/bweto/ip-validator.git)
 
@@ -91,7 +92,7 @@ Al descargar el repositorio y abrirlo en un IDE podemos tener acceso en la raíz
 La aplicación al levantarse cuenta con un swagger en la siguiente URL `http://localhost:9090/ip-validator/api/swagger-ui/`
 
 >## **Docker**
-<div id='id5' />
+<div id='id6' />
 ---
 Actualmente se encuentra en dockerHub y se puede obtener con el siguiente comando 
 `docker pull rbdesign/ip_validator:latest`
@@ -107,14 +108,83 @@ La aplicación cuenta con un Dockerfile en la raíz del proyecto con la cual pod
 
 - Correr imagen con el siguiente comando `docker run -p 9090:9090 ip_validator`
 
+>## **Casos de prueba**
+<div id='id7' />
+
+1. Obtener información de una IP:
+
+    Para probar el servicio de obtener información de una IP, se debe consumir con una petición GET, enviando en vez de {id} enviar la IP de la cual se desea conocer la información.
+    http://localhost:9090/ip-validator/api/ip/information/{id}
+
+    Ejemplo:
+
+    GET Request: 
+
+    http://localhost:9090/ip-validator/api/ip/information/186.35.6.23
+
+    Response JSON, exitoso HTTP 200:
+
+        {
+          "countryName": "Chile",
+          "countryISO": "CHL",
+          "currency": "CLP",
+          "base": "EUR",
+          "price": 849.959912
+        }
+
+    `curl -vl 'localhost:9090/ip-validator/api/ip/information/186.35.6.23'`
+
+2. Obtener información de una IP invalida:
+
+    GET Request:
+
+    http://localhost:9090/ip-validator/api/ip/information/186.35.6.2385
+
+    Response Bad request HTTP 400:
+
+        { 
+            "message": "Invalid IP"
+        }
+    
+    `curl -vl 'localhost:9090/ip-validator/api/ip/information/186.35.6.2385'`
+
+3. Agregar ip a la ban list:
+
+
+    http://localhost:9090/ip-validator/api/ip/banned
+
+    POST Request JSON:
+
+        { 
+            "ipNumber": "186.35.6.23" 
+        }
+
+    Response JSON created HTTP 201:
+
+        {
+            "message": "The IP was successfully added to the ban list."
+        }
+
+    `curl --location --request POST 'localhost:9090/ip-validator/api/ip/banned' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "ipNumber": "192.168.168.168"
+        }'`
+
+4. Tratar de conseguir información de una IP en la ban list
+
+    Después de agregar la IP vamos a probar si esta quedo en la ban lista tratando de consultar información de nuevo.
+
+    GET Request
+
+    http://localhost:9090/ip-validator/api/ip/information/186.35.6.23
+
+    Response bad request HTTP 400
+
+    {
+        "message": "This IP is already on the ban list"
+    }
+
+    `curl -vl 'localhost:9090/ip-validator/api/ip/information/186.35.6.23'`
+
 >Gracias Atte. *Roberto García Betancourt*
-
-
-
-
-
-
-
-
-
-
