@@ -1,6 +1,6 @@
 package com.mercadolibre.ip.validator.dto;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 

@@ -12,8 +12,7 @@ public class IpValidator implements Predicate<String> {
 	
 	@Override
 	public boolean test(String ip) {	
-		return ip == null || ip.length() < 7 
-			|| ip.length() > 16 || !Pattern.matches(PATTERN,ip) ? false : true;
+		return ip == null || !Pattern.matches(PATTERN,ip) ? false : true;
 	}
 
 }

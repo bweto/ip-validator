@@ -5,9 +5,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class IpValidatorApplicationTests {
-
+		
 	@Test
 	void contextLoads() {
+		String[] args = {"a", "b"};
+		IpValidatorApplication.main(args);
 	}
 
 }

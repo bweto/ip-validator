@@ -46,7 +46,7 @@ class ConnectionsThirdPartiesServiceImplTest {
 		assertThatThrownBy(() ->connectionsThirdPartiesService.ipCountry("255.255.255.255"))
 		.hasMessageContaining(ErrorMessages.IP_WITHOUT_COUNTRY.message())
 		.isInstanceOf(ConnectionsThirdPartiesException.class);
-		
+
 	}
 	
 	@Test

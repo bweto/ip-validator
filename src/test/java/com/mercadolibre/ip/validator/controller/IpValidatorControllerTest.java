@@ -47,7 +47,7 @@ class IpValidatorControllerTest {
 	@Test
 	void testGetIpInformation200() throws Exception {
 		var ip = "192.168.2.3";
-		var ipValidatorResponse = new IpValidatorResponse("Colombia", "COL", "COP", "EUR", new BigDecimal(4476.383588));
+		var ipValidatorResponse = new IpValidatorResponse("Colombia", "COL", "COP", "EUR", new BigDecimal("4476.383588"));
 		Mockito.when(ipValidatorService.getIPInformation(ip)).thenReturn(ipValidatorResponse);
 		var response = mvc
 				.perform(get("/ip/information/{ip}", "192.168.2.3").contentType(MediaType.APPLICATION_JSON_VALUE))

@@ -1,6 +1,6 @@
 package com.mercadolibre.ip.validator.configuration;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
