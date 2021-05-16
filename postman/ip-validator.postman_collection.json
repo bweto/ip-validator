@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "7726b19c-a399-4534-b0bd-eaf9379eb96e",
+		"name": "ip-validator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Information IP OK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/ip-validator/api/ip/information/192.168.168.168",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"ip-validator",
+						"api",
+						"ip",
+						"information",
+						"192.168.168.168"
+					]
+				},
+				"description": "This service between the information about the name of the country, ISO, currency, base in EUR and the value"
+			},
+			"response": []
+		},
+		{
+			"name": "IP Banned",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ipNumber\": \"192.168.168.168\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/ip-validator/api/ip/banned",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"ip-validator",
+						"api",
+						"ip",
+						"banned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Information IP Fail IP invalid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/ip-validator/api/ip/information/192.1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"ip-validator",
+						"api",
+						"ip",
+						"information",
+						"192.1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

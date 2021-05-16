@@ -3,13 +3,14 @@
 ## **Índice**
 ---
 1. [Ejercicio](#id1)
-2. [Herramientas](#id2)
-3. [Requerimientos](#id3)
-4. [Descripción de la solución](#id4)
+2. [Descripción de la solución](#id2)
+3. [Herramientas](#id3)
+4. [Requerimientos](#id4)
 5. [Obtner el código fuente](#id5)
 6. [Docker](#id6)
 
-## **Ejercicio**
+>## **Ejercicio**
+<div id='id1' />
 ---
 
 Para coordinar acciones de respuesta ante fraudes, es útil tener disponible información
@@ -43,26 +44,8 @@ Para obtener la información, pueden utilizarse las siguientes APIs públicas:
 + La aplicación no deberá perder su estado ante un shutdown.
 + Además de funcionamiento, prestar atención al estilo y calidad del código fuente.
 
-
-## **Herramientas**
----
-Para este ejercicio se utilizaron las siguientes Herramientas:
-
-- Java 11
-- SpringBoot 2.4.5
-- JUnit 5
-- Mockito
-- Docker
-- Postman
-- Gradle
-
-## **Requerimientos**
----
-- Java 11
-- Gradle >= 5.6
-- Docker
-
-## **Descripción de la solución**
+>## **Descripción de la solución**
+<div id='id2' />
 ---
 La aplicación sale por el puerto 9090 y el endpoint es http://localhost:9090/ip-validator/api
 se crea el end-point /ip/information/{ip} de tipo GET, donde recibe como parámetro el número de IP del cual se quiere obtener la información.
@@ -74,7 +57,30 @@ Si no es posible obtener la información de algún servicio o falla en una de la
 Se crea el end-point /ip/banned de tipo POST, donde recibe un objeto JSON con un parámetro de tipo String llamado ipNumber para agregar este a la ban list de base de datos.
 Si se agrega de forma exitosa se responde con el estatus **HTTP 201 created**. este servicio también realiza las validaciones deIP valida y si existe ya en la banlist, si no pasa estas validaciones responde un **HTTP 400 bad reques**.
 
-## **Obtner el código fuente**
+
+>## **Herramientas**
+<div id='id2' />
+---
+Para este ejercicio se utilizaron las siguientes Herramientas:
+
+- Java 11
+- SpringBoot 2.4.5
+- JUnit 5
+- Mockito
+- Docker
+- Postman
+- Gradle
+
+>## **Requerimientos**
+<div id='id3' />
+---
+- Java 11
+- Gradle >= 5.6
+- Docker
+
+
+>## **Obtner el código fuente**
+<div id='id4' />
 ---
 El código fuente se encuentra en GitHub, para obtenerlo se debe ejecutar el siguiete comando en la terminal o ir al sitio directamente. [repositorio](https://github.com/bweto/ip-validator.git)
 
@@ -84,7 +90,8 @@ Al descargar el repositorio y abrirlo en un IDE podemos tener acceso en la raíz
 
 La aplicación al levantarse cuenta con un swagger en la siguiente URL `http://localhost:9090/ip-validator/api/swagger-ui/`
 
-## **Docker**
+>## **Docker**
+<div id='id5' />
 ---
 Actualmente se encuentra en dockerHub y se puede obtener con el siguiente comando 
 `docker pull rbdesign/ip_validator:latest`
@@ -100,7 +107,7 @@ La aplicación cuenta con un Dockerfile en la raíz del proyecto con la cual pod
 
 - Correr imagen con el siguiente comando `docker run -p 9090:9090 ip_validator`
 
->Gracias Atte. Roberto García Betancourt
+>Gracias Atte. *Roberto García Betancourt*
 
 
 
