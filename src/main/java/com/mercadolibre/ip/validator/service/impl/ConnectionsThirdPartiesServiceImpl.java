@@ -20,11 +20,14 @@ public class ConnectionsThirdPartiesServiceImpl implements ConnectionsThirdParti
 
 	@Autowired
 	private IPValidatorProperties ipValidatorProperties;
+	
+	@Autowired
+	private RestTemplate restemplate;
 
 	@Override
 	public IpCountryResponse ipCountry(String ip) {
 
-		IpCountryResponse response = new RestTemplate()
+		IpCountryResponse response = restemplate
 				.getForObject(ipValidatorProperties.getIp2countryUrl().concat(ip), IpCountryResponse.class);
 
 		if (response == null || response.getCountryCode3() == null || response.getCountryCode3().isBlank()) {
@@ -37,7 +40,7 @@ public class ConnectionsThirdPartiesServiceImpl implements ConnectionsThirdParti
 	@Override
 	public String restCountries(String iso) {
 
-		RestCountriesResponse response = new RestTemplate()
+		RestCountriesResponse response = restemplate
 				.getForObject(ipValidatorProperties.getRestcountriesUrl().concat(iso), RestCountriesResponse.class);
 
 		return validRestCountriesResponse(response);
@@ -64,7 +67,7 @@ public class ConnectionsThirdPartiesServiceImpl implements ConnectionsThirdParti
 
 	@Override
 	public FixerIoApiResponse fixerioApi() {
-		FixerIoApiResponse response = new RestTemplate().getForObject(
+		FixerIoApiResponse response = restemplate.getForObject(
 				ipValidatorProperties.getFixerioUrl().concat(
 						ipValidatorProperties.getFixerioKey().concat(ipValidatorProperties.getFixerioOptions())),
 				FixerIoApiResponse.class);
